@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import classes from "./Auth.module.css";
 
 const AuthForm = () => {
-  //const history = useHistory("");
+  const history = useHistory("");
   const enteredEmail = useRef("");
   const enteredPassword = useRef("");
   const [isLogin, setIsLogin] = useState(true);
@@ -38,6 +38,8 @@ const AuthForm = () => {
 
       setIsLoading(false);
       if (responsee.ok) {
+        history.replace("/home");
+        localStorage.setItem("token", JSON.stringify(data.idToken));
       } else {
         let errorMessage = "Authenication failed";
         alert(errorMessage);
